@@ -16,7 +16,6 @@ var options = {
   "show_update_time": updateTimeSelect.selectedIndex,
   "weatherLine1": weatherLine1Select.selectedIndex,
   "weatherLine2": weatherLine2Select.selectedIndex,
-  "weatherLine3": weatherLine3Select.selectedIndex,
   "weatherLine4": weatherLine4Select.selectedIndex,
   "weatherUpdateInt": parseInt(updIntSelect.value),
 
@@ -213,7 +212,6 @@ var configuration = {
   moon_phase: 0,
   weatherLine1: 5,
   weatherLine2: 2,
-  weatherLine3: 3,
   weatherLine4: 4,
   weatherUpdateInt: 20,
 
@@ -465,37 +463,7 @@ function SendToPebble(pos, use_default) {
                 }
                 break;
             }
-            console.log("weather_Line_1 = " + (weather_Line_1.replace('°', ' ')).replace('°', ' '));
-
-
-            switch (configuration.weatherLine3){
-              case 1:
-                weather_Line_3 = conditions;
-                break;
-              case 2:
-                weather_Line_3 = wind_speed + " " + wind_speed_unit;
-                break;
-              case 3:
-                weather_Line_3 = humidity + " %";
-                break;
-              case 4:
-                weather_Line_3 = pressure + " " + pressure_unit;
-                break;
-              case 5:
-                if ((Forecast.TempMin == 10000) || (Forecast.TempMax === 0)){
-                  weather_Line_3 = " --/-- ";
-                } else {
-                  if (configuration.degree_f){
-                    weather_Line_3 = Math.round((Forecast.TempMax-273.15)*1.8+32) + "°/" + Math.round((Forecast.TempMin-273.15)*1.8+32) + "°F";
-                  } else {
-                    weather_Line_3 = Math.round((Forecast.TempMax-273.15)) + "°/" + Math.round((Forecast.TempMin-273.15)) + "°C";
-                  }
-                }
-                break;
-            }
-            console.log("weather_Line_3 = " + (weather_Line_3.replace('°', ' ')).replace('°', ' '));
-
-
+            console.log("weather_Line_1 = " + (weather_Line_1.replace('°', ' ')).replace('°', ' '))ů
 
             switch (configuration.weatherLine4){
               case 1:
@@ -530,7 +498,6 @@ function SendToPebble(pos, use_default) {
             var weather_string_1 = weather_Line_1;
             console.log("weather_string_1 is: \n" + (weather_string_1.replace('°', ' ')).replace('°', ' ') +'\n');
             var weather_string_2 = weather_Line_3 + " / " + weather_Line_4; //TODO: what should be on this string?
-            if (configuration.weatherLine3 === 0) weather_string_2 = weather_Line_4;
             if (configuration.weatherLine4 === 0) weather_string_2 = weather_Line_3;
             console.log("weather_string_2 is: \n" + (weather_string_2.replace('°', ' ')).replace('°', ' ') +'\n');
 
