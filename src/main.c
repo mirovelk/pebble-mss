@@ -47,7 +47,6 @@ static TextLayer *weather_layer_1_temp; // Temperature
 static TextLayer *weather_layer_3_location; // Location Name
 static TextLayer *weather_layer_4_last_update; // Time of last data / time since last update
 static TextLayer *weather_layer_7_string_1; //configurable, under actual temperature, 2 lines
-static TextLayer *weather_layer_7_string_2; //configurable, under moon and battery info, up to 2 infos in one line
 
 static TextLayer *text_TimeZone_layer; //24H/AM/PM and UTC-Offset
 
@@ -529,7 +528,6 @@ void DisplayData(void) {
 
 
   text_layer_set_text(weather_layer_7_string_1, weather_string_1);
-  text_layer_set_text(weather_layer_7_string_2, weather_string_2);
   text_layer_set_text(weather_layer_3_location, location_name);
 
 
@@ -1294,7 +1292,7 @@ static void handle_bluetooth(bool connected) {
       }
     }
   }
-  text_layer_set_text(connection_layer, connected ? "Bluetooth" : "---------");
+  text_layer_set_text(connection_layer, connected ? "O" : "-");
   #ifdef PBL_COLOR
     if (!connected) text_layer_set_text_color(connection_layer, GColorRed); else text_layer_set_text_color(connection_layer, textcolor_con);
   #endif
@@ -1721,7 +1719,6 @@ static void apply_color_profile(void){
   text_layer_set_text_color(weather_layer_3_location, textcolor_location);
   text_layer_set_text_color(weather_layer_4_last_update, textcolor_last_update);
   text_layer_set_text_color(weather_layer_7_string_1, textcolor_weather);
-  text_layer_set_text_color(weather_layer_7_string_2, textcolor_weather);
   text_layer_set_text_color(text_TimeZone_layer, textcolor_tz);
   #ifndef PBL_PLATFORM_APLITE
     if (HealthInfo > 1){
@@ -1923,7 +1920,6 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
     case KEY_WEATHER_STRING_2:
       snprintf(weather_string_2, sizeof(weather_string_2), "%s", t->value->cstring);
       replace_degree(weather_string_2, sizeof(weather_string_2));
-      //text_layer_set_text(weather_layer_7_string_2, weather_string_2);
       //APP_LOG(APP_LOG_LEVEL_INFO, "weather_string_2 = %s", weather_string_2);
       break;
     case KEY_TIME_ZONE_NAME:
@@ -2235,15 +2231,6 @@ static void main_window_load(Window *window) {
   text_layer_set_font(weather_layer_7_string_1, fonts_get_system_font(FONT_KEY_GOTHIC_14));
 	layer_add_child(main_window_layer, text_layer_get_layer(weather_layer_7_string_1));
 
-  // Create String_2 Layer
-  weather_layer_7_string_2 = text_layer_create(GRect(0+X_OFFSET, 50+Y_OFFSET, 84, 17)); //TODO
-  text_layer_set_background_color(weather_layer_7_string_2, GColorClear);
-  text_layer_set_text_color(weather_layer_7_string_2, textcolor);
-  text_layer_set_text_alignment(weather_layer_7_string_2, GTextAlignmentCenter);
-  text_layer_set_text(weather_layer_7_string_2, "--- / ---");
-  text_layer_set_font(weather_layer_7_string_2, fonts_get_system_font(FONT_KEY_GOTHIC_14));
-	layer_add_child(main_window_layer, text_layer_get_layer(weather_layer_7_string_2));
-
   // Create TimeZone Layer
   text_TimeZone_layer = text_layer_create(GRect(5+X_OFFSET, 132+Y_OFFSET, 100, 20)); //TODO
   text_layer_set_background_color(text_TimeZone_layer, GColorClear);
@@ -2358,7 +2345,6 @@ static void main_window_unload(Window *window) {
   text_layer_destroy(weather_layer_3_location);
   text_layer_destroy(weather_layer_4_last_update);
   text_layer_destroy(weather_layer_7_string_1);
-  text_layer_destroy(weather_layer_7_string_2);
   text_layer_destroy(text_TimeZone_layer);
 
   // --- END ---
