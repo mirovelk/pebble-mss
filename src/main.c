@@ -2015,7 +2015,7 @@ static void apply_color_profile(void){
       textcolor_last_update        = GColorFromHEX(0xFFFFFF);
       background_color_last_update = GColorFromHEX(0x000000);
   
-      background_color_lines       = GColorFromHEX(0xAAAAAA);
+      background_color_lines       = GColorFromHEX(0x000000);
     } else if (ColorProfile == 3){ //TESTING (Black on White with Colors)
       textcolor_clock              = GColorFromHEX(0x000000);
       textcolor_seconds            = GColorFromHEX(0x000000);
@@ -2501,7 +2501,7 @@ static void main_window_load(Window *window) {
   s_image_layer_minute_1 = layer_create(GRect(80+X_OFFSET, 94+Y_OFFSET, 26, 41));
   layer_set_update_proc(s_image_layer_minute_1, layer_update_callback_minute_1);
   layer_add_child(main_window_layer, s_image_layer_minute_1);
-  s_image_layer_minute_2 = layer_create(GRect(111+X_OFFSET, 94+Y_OFFSET, 26, 41));
+  s_image_layer_minute_2 = layer_create(GRect(111+X_OFFSET, 64+Y_OFFSET, 26, 71));
   layer_set_update_proc(s_image_layer_minute_2, layer_update_callback_minute_2);
   layer_add_child(main_window_layer, s_image_layer_minute_2);
   
@@ -2562,7 +2562,7 @@ static void main_window_load(Window *window) {
   
   
   // Date text
-  Date_Layer = text_layer_create(GRect(5+X_OFFSET, 63+Y_OFFSET, 134 /* width */, 30 /* height */));
+  Date_Layer = text_layer_create(GRect(5+X_OFFSET, 45+Y_OFFSET, 134 /* width */, 30 /* height */));
   text_layer_set_text_color(Date_Layer, textcolor);
   text_layer_set_background_color(Date_Layer, GColorClear );
   text_layer_set_font(Date_Layer, fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD));
@@ -2598,7 +2598,7 @@ static void main_window_load(Window *window) {
 	layer_add_child(main_window_layer, text_layer_get_layer(weather_layer_1_temp));
   
   // Create location name Layer
-  weather_layer_3_location = text_layer_create(GRect(0+X_OFFSET, -1+Y_OFFSET, 110, 17));
+  weather_layer_3_location = text_layer_create(GRect(0+X_OFFSET, -4+Y_OFFSET, 110, 17));
   text_layer_set_background_color(weather_layer_3_location, GColorClear);
   text_layer_set_text_color(weather_layer_3_location, textcolor);
   text_layer_set_text_alignment(weather_layer_3_location, GTextAlignmentCenter);
@@ -2607,7 +2607,7 @@ static void main_window_load(Window *window) {
 	layer_add_child(main_window_layer, text_layer_get_layer(weather_layer_3_location));
   
   // Create last updated Layer
-  weather_layer_4_last_update = text_layer_create(GRect(111+X_OFFSET, -1+Y_OFFSET, 33, 17));
+  weather_layer_4_last_update = text_layer_create(GRect(111+X_OFFSET, -4+Y_OFFSET, 33, 17));
   text_layer_set_background_color(weather_layer_4_last_update, GColorClear);
   text_layer_set_text_color(weather_layer_4_last_update, textcolor);
   text_layer_set_text_alignment(weather_layer_4_last_update, GTextAlignmentCenter);
@@ -2616,7 +2616,7 @@ static void main_window_load(Window *window) {
 	layer_add_child(main_window_layer, text_layer_get_layer(weather_layer_4_last_update));
   
   // Create String_1 Layer
-  weather_layer_7_string_1 = text_layer_create(GRect(86+X_OFFSET, 54-15+Y_OFFSET, 144-86-2, 30)); //TODO
+  weather_layer_7_string_1 = text_layer_create(GRect(86+X_OFFSET, 54-18+Y_OFFSET, 144-86-2, 30)); //TODO
   text_layer_set_background_color(weather_layer_7_string_1, GColorClear);
   text_layer_set_text_color(weather_layer_7_string_1, textcolor);
   text_layer_set_text_alignment(weather_layer_7_string_1, GTextAlignmentCenter);

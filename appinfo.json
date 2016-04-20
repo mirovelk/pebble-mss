@@ -59,18 +59,13 @@
     ],
     "companyName": "fg",
     "enableMultiJS": false,
-    "longName": "M7S_wf_14_7",
+    "longName": "M7S_wf_14_7_m",
     "projectType": "native",
     "resources": {
         "media": [
             {
-                "file": "fonts/Climacons.ttf",
-                "name": "FONT_CLIMACONS_32",
-                "type": "font"
-            },
-            {
                 "file": "fonts/moon_phases.ttf",
-                "name": "FONT_MOON_PHASES_SUBSET_24",
+                "name": "FONT_MOON_PHASES_SUBSET_30",
                 "type": "font"
             },
             {
@@ -80,19 +75,24 @@
             },
             {
                 "file": "fonts/moon_phases.ttf",
-                "name": "FONT_MOON_PHASES_SUBSET_30",
+                "name": "FONT_MOON_PHASES_SUBSET_24",
+                "type": "font"
+            },
+            {
+                "file": "fonts/Climacons.ttf",
+                "name": "FONT_CLIMACONS_32",
                 "type": "font"
             }
         ]
     },
     "sdkVersion": "3",
-    "shortName": "M7S_wf_14_7",
+    "shortName": "M7S_wf_14_7_m",
     "targetPlatforms": [
         "aplite",
         "basalt",
         "chalk"
     ],
-    "uuid": "03adc57a-569b-4669-9a80-b505eaea314d",
+    "uuid": "3d97d471-d423-4f0b-9a03-7ecb392ba08a",
     "versionLabel": "14.7",
     "watchapp": {
         "watchface": true
